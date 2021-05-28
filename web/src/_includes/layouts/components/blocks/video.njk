@@ -16,7 +16,7 @@
 	{% endif %}
 {% endset %}
 	
-<div data-overlay="{{ hasThumbnail }}" class="relative w-full block-padding {{ highlightedClasses }}">
+<div data-overlay="{{ hasThumbnail }}" data-highlighted="{{ section.highlighted }}" class="relative w-full block-padding {{ highlightedClasses }}">
 	<div class="relative flex flex-col justify-center items-center w-full main-padding">
 		{% if section.highlighted %}
 			<h2 class="text-white my-12">{{ section.title }}</h2>

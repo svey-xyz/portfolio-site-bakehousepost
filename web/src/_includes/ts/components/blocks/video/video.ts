@@ -8,12 +8,10 @@ import { smoothScroll } from '../../../utilities/scrollIntoView'
 
 let player:any
 let overlay:HTMLElement
-let scrollIndicator:HTMLElement
 
 export const mount = (container: Element) => {
 	var vimeoContainer = <HTMLElement>container.querySelector('.eleventy-plugin-vimeo-embed')!;
 	overlay = <HTMLElement>container.querySelector('#video-overlay')!;
-	scrollIndicator = <HTMLElement>container.querySelector('.scroll-indicator')!;
 	player = new Player(vimeoContainer);
 
 	player.on('play', function () {
@@ -25,7 +23,11 @@ export const mount = (container: Element) => {
 	});
 
 	overlay.addEventListener('click', playVideo);
-	scrollIndicator.addEventListener('click', smoothScroll);
+
+	if (container.querySelector('[data-highlighted="true"]')) {
+		let scrollIndicator = <HTMLElement>container.querySelector('.scroll-indicator')!;
+		scrollIndicator.addEventListener('click', smoothScroll);
+	}
 }
 
 function playVideo() {
