@@ -3,25 +3,36 @@
 #}
 
 <div class="relative flex align-center justify-center w-full main-padding">
-	<form id="formContainer" name="contact" class="w-full max-w-prose-full" method="POST" data-netlify="true">
+	<form id="formContainer" name="contact" class="w-full max-w-prose-full">
 		
 		<div class="w-full mb-12">
 			<label for="Name" class="block mb-4 tracking-wider font-semibold leading-normal">NAME</label>
-			<input type="text" id="Name" name="Name" class="block p-2 w-full border border-black" required>
+			<input type="text" id="Name" name="Name" class="block p-2 w-full border border-black" >
 		</div>
 
 		<div class="w-full mb-12">
 			<label for="Email" class="block mb-4 tracking-wider font-semibold leading-normal">EMAIL</label>
-			<input type="email" id="Email" i="Email" class="block p-2 w-full border border-black" required>
+			<input type="email" id="Email" i="Email" class="block p-2 w-full border border-black" >
 		</div>
 
 		<div class="w-full mb-12">
 			<label for="Message" class="block mb-4 tracking-wider font-semibold leading-normal">MESSAGE</label>
-			<textarea id="Message" name="Message" class="block p-2 w-full border border-black" rows="6" maxlength="3000" required></textarea>
+			<textarea id="Message" name="Message" class="block p-2 w-full border border-black" rows="6" maxlength="3000" ></textarea>
 		</div>
 
 		<div class="w-full mb-12">
 			<button type="submit" class="block bg-black text-white px-6 tracking-wider font-semibold leading-loose">Send</button>
+		</div>
+
+		<div id="emailSuccess" class="email-response hidden w-full font-bold text-green-400">
+			<span>Message sent succesfully!</span>
+		</div>
+
+		<div id="emailFailure" class="email-response hidden w-full text-red-700">
+			<span>
+				Messaged failed to send. <br> Try again or contact me at my email address: <br>
+				<a href="mailto: {{ site.about.email }}" class="leading-loose font-bold">{{ site.about.email }}</a>
+			</span>
 		</div>
 
 	</form>
