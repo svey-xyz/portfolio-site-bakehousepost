@@ -1,10 +1,10 @@
 {
   "root": true,
   "project": {
-    "name": "personal-portfolio-site"
+    "name": "bakehousepost-website"
   },
   "api": {
-    "projectId": "hautfgiz",
+    "projectId": "tgb81wh6",
     "dataset": "production"
   },
   "plugins": [
@@ -28,9 +28,9 @@
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema"
     },
-    {
-      "name": "part:@sanity/desk-tool/structure",
-      "path": "./deskStructure.js"
-    }
+	{
+		"name": "part:@sanity/desk-tool/structure",
+		"path": "./deskStructure.js"
+	}
   ]
 }
