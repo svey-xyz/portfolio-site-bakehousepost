@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@100;300;400;700;900&display=swap');
+
+@layer base {
+	h1, h2, h3, h4, h5, h6 {
+		@apply font-heading text-center leading-normal;
+	}
+
+	h1 {
+		@apply text-6xl font-extrabold;
+	}
+	h2 {
+		@apply text-4xl font-bold;
+	}
+	p {
+		@apply mb-6;
+		&:last-child {
+			margin: 0;
+		}
+	}
+	a {
+		@apply tracking-wider hover:underline;
+	}
+
+	.main-padding {
+		@apply max-w-screen-xl mx-auto px-6 sm:px-12 md:px-24;
+		transition: padding 0.5s ease-out;
+	}
+
+	.block-padding {
+		@apply my-8 md:my-12;
+	}
+
+	.transition-fast {
+		transition: all 250ms ease-out;
+	}
+	.transition-medium {
+		transition: all 500ms ease-in-out;
+	}
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+  min-height: 100%;
+  height: 100%;
+}
+
+.emoji {
+	height: 1.2em;
+	display: inline
+}
+
+.screen-height-section {
+	left: 0;
+	right: 0;
+	height: 100vh;
+	height: calc(var(--vh, 1vh) * 100);
+}
+
+.sixty-height-section {
+	left: 0;
+	right: 0;
+	height: 100vh;
+	height: calc(var(--vh, 1vh) * 60);
+}
+
+canvas {
+	min-width: 100vw;
+	position: absolute;
+	display: block;
+	z-index: 0;
+}

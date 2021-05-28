@@ -1,0 +1,20 @@
+:root {
+	--sm-screen: 480px;
+	--md-screen: 768px;
+	--lg-screen: 976px;
+	--xl-screen: 1440px;
+
+	--primary-colour: #FFFFFF;
+	--primary-colour-translucent: #FFFFFFDD;
+	--secondary-colour: #2D3047;
+	--accent-colour: #E0A142;
+
+	--block-padding: 1.5rem;
+
+}
+
+@custom-media --sm-screen (min-width: 480px);
+@custom-media --max-sm-screen (max-width: 768px);
+@custom-media --md-screen (min-width: 768px);
+@custom-media --lg-screen (min-width: 976px);
+@custom-media --xl-screen (min-width: 1440px);
