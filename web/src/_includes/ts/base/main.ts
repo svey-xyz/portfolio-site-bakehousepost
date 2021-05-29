@@ -44,10 +44,6 @@ document.addEventListener(
 				script: import('../components/headers/header')
 			},
 			{
-				selector: '.interactiveSection > .section-container > .blobShader',
-				script: import('../components/blocks/interactiveSections/blobShader')
-			},
-			{
 				selector: '.projectsArchive > [data-filterable="true"]', // don't bother loading script if not filterable
 				script: import('../components/blocks/projectsArchive/projectsArchive')
 			},

@@ -1,18 +1,39 @@
 {% set cardTags %}
-	{% for tag in project.tags %}
+	{% for tag in project.projectTags %}
 		{{ tag.title | slug }}
 		{% if not loop.last %},{% endif %}
 	{% endfor %}
 {% endset %}
 
-<a href="/{{ site.navigation.archivePageSlug | slug }}/{{ project.slug | slug }}" 
-class="projectsArchive-card" data-tags="{{ cardTags }}">
-	<div class="content">
-		<img src="{% imageUrlFor project.thumbnail %}" alt="{{ project.title }} Project Thumbnail" class="lazy"/>
-		<div class="info">
-			<h4>{{ project.title }}</h4>
-			<p>{{ project.blurb }}</p>
+{% set tileFont %}
+	{% if section.clientLogo %}
+		font-bold
+	{% else %}
+		font-light
+	{% endif %}
+{% endset %}
+
+<div class="relative flex flex-col w-full cursor-pointer" data-tags="{{ cardTags }}">
+	<div class="relative block overflow-hidden h-full w-full">
+		<div class="absolute inset-0 flex items-center justify-center z-10 opacity-0 hover:opacity-100">
+			{% if section.clientLogo and project.client.clientLogo %}
+				<img src="{% imageUrlFor project.client.clientLogo %}" alt="{{ project.client.clientName }} - logo overlay"
+					class="lazy z-10 h-24 max-h-full filter-white"/>
+			{% else %}
+				<i class="z-10 fas fa-play-circle text-primaryColour text-4xl md:text-6xl"></i>
+			{% endif %}
+
+			<div class="absolute inset-0 bg-black opacity-40"></div>
 		</div>
+		<img src="{% imageUrlFor project.thumbnail, 800 %}" alt="{{ project.title }} Project Thumbnail"
+			class="lazy relative w-full h-auto w-min-full"/>
 	</div>
-</a>
+	<div class="mt-2 sm:mt-4">
+		{% if not(section.clientLogo) %}
+			<span class="font-bold">{{ project.client.clientName }}, </span>
+		{% endif %}
+
+		<span class="{{ tileFont }}">{{ project.title }}</span>
+	</div>
+</div>
 

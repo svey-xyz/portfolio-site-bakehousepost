@@ -1,6 +1,3 @@
-## Ignore sensitive files
-web/sendgrid.env
-
 ## Ignore build files
 web/www
 

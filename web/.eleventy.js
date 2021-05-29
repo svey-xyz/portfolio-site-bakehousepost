@@ -91,8 +91,8 @@ module.exports = (eleventyConfig) => {
 				}
 			}
 
-			for (let j = 0; j < project.tags.length; j++) {
-				if (matchingTags[project.tags[j]._id]) {
+			for (let j = 0; j < project.projectTags.length; j++) {
+				if (matchingTags[project.projectTags[j]._id]) {
 					activeProjects.push(project);
 					break;
 				}

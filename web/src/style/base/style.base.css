@@ -36,6 +36,9 @@
 	.transition-medium {
 		transition: all 500ms ease-in-out;
 	}
+	 .filter-white {
+        filter: brightness(0) saturate(100%) invert(1);
+    }
 }
 
 html, body {

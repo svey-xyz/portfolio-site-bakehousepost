@@ -39,13 +39,24 @@ export default {
 	],
 	preview: {
 		select: {
-			filters: 'filterTags'
+			filters: 'filterTags',
+			allTags: 'allTags',
+			tag0: 'tags.0.title',
+			tag1: 'tags.1.title',
+			tag2: 'tags.2.title',
 		},
 		prepare(value) {
-			
+			const tags = [value.tag0, value.tag1].filter(Boolean)
+			const joinedTags = tags.length > 0 ? tags.join(', ') : 'no tags'
+			const moreTags = Boolean(value.tag2) ? ', and more...' : ''
+
+			const selectedTags = value.allTags ?
+					'Archive of all projects.' :
+					`Archive of: ${joinedTags}${moreTags}`
+
 			return {
 				title: 'Projects Archive',
-				subtitle: `Tag filtering is set to: ${value.filters}.`
+				subtitle: selectedTags
 			}
 		}
 	}

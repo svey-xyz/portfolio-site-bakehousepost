@@ -1,6 +1,4 @@
-import embed from './blocks/embed';
 import textSection from './blocks/textSection';
-import interactiveSection from './blocks/interactiveSection'
 import projectsArchive from './blocks/projectsArchive'
 import itemCard from './blocks/itemCard'
 import simpleHero from './blocks/simpleHero'

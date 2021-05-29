@@ -8,7 +8,7 @@
 	{% set filterTags = section.tags %}
 {% endif %}
 
-<div data-filterable="{{ section.filterTags }}" class="main-padding block-padding flex-wrap justify-center v">
+<div data-filterable="{{ section.filterTags }}" class="w-full main-padding block-padding flex-wrap justify-center">
 	<div class="flex flex-wrap justify-center select-none">
 
 		{% if (section.filterTags) %}
@@ -18,7 +18,7 @@
 			<span>, &nbsp</span>
 
 			{% for tag in filterTags %}
-				<a class="tag-button cursor-pointer" data-tag="{{ tag.title | slug }}" title="{{ tag.title }}">
+				<a class="tag-button cursor-pointer" data-tag="{{ tag.title }}" title="{{ tag.title }}">
 					{{ tag.title }}
 				</a>
 				{% if not loop.last %}
@@ -29,7 +29,7 @@
 
 	</div>
 
-	<div class="flex flex-wrap justify-center sm:-mx-6">
+	<div class="realtive flex flex-wrap justify-center w-full">
 		{# 11ty only returns strings from shortcodes, so the data is added to the page data, hopefully this changes in the future #}
 		{% set activeProjects %}{% getMatchingProjects projects.work, filterTags %}{% endset %}
 
