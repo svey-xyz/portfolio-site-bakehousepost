@@ -1,0 +1,18 @@
+<div class="featured-clip-thumb relative mx-4 md:mx-12 w-24 md:w-36 cursor-pointer bg-black" data-video-id="{% videoID featuredClip.clip %}">
+	<div class="w-full pb-16/9">
+		<div class="absolute inset-0 flex items-center justify-center z-10 opacity-0 hover:opacity-100">
+			{% if featuredClip.client and featuredClip.client.clientLogo %}
+				<img src="{% sanityImageURL featuredClip.client.clientLogo %}" alt="{{ featuredClip.client.clientName }} - logo overlay"
+					class="lazy z-10 h-1/2 filter-white"/>
+			{% else %}
+				<i class="z-10 fas fa-play-circle text-primaryColour text-3xl md:text-4xl"></i>
+			{% endif %}
+
+			<div class="absolute inset-0 bg-black opacity-40"></div>
+		</div>
+		<div class="flex absolute inset-0 items-center justify-center">
+			<img src="{% sanityImageURL featuredClip.thumbnail, 800 %}" alt="{{ project.title }} Project Thumbnail"
+				class="lazy absolute inset-0 inline-block w-full h-full max-w-full max-h-full object-center object-contain"/>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,15 @@
+<div class="featured-clip relative min-w-full min-h-full">
+	<div id="video-overlay" class="block cursor-pointer absolute inset-0 overflow-hidden">
+		{% if featuredClip.thumbnail %}
+			<div class="flex absolute inset-0 items-center justify-center bg-black">
+				<img src="{% sanityImageURL featuredClip.thumbnail, 1024 %}" alt="{{ featuredClip.title }} - Video Overlay"
+				class="lazy absolute inset-0 inline-block w-full h-full min-w-full min-h-full object-center object-cover"/>
+			</div>
+		{% endif %}
+	</div>
+
+	{# Embed handled by Eleventy and JS #}
+	<div class="featured-clip-container z-10 absolute inset-0 hidden" data-video-id="{% videoID featuredClip.clip %}">
+		<div id="featured-clip-wrapper" ></div>
+	</div>
+</div>

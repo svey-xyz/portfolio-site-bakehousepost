@@ -2,12 +2,15 @@
 * Styling for site wide header
 */
 
-#header {
+:root {
 	--header-item-height: 25px;
 	--menu-button-width: 30px;
 	--header-padding: 25px;
 
-	--total-height: 75px;
+	--header-total-height: 75px;
+}
+
+#header {
 
 	&.collapsed {
 		& > .header-sticky > .header-container > .site-navigation {
@@ -220,10 +223,12 @@
 	}
 	
 	/* Padding to align rest of page */
-	& > .header-padding {
+
+}
+
+.header-padding {
 		position: relative;
 		width: 100%;
-		height: var(--total-height);
-		min-height: var(--total-height);
+		height: var(--header-total-height);
+		min-height: var(--header-total-height);
 	}
-}

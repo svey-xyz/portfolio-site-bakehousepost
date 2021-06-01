@@ -57,7 +57,7 @@ export default {
 			title: 'Thumbnail Image',
 			name: 'thumbnail',
 			type: 'image',
-			description: 'This will appear in project lists, but not in the project itself.',
+			description: 'Video thumbnail used for the project.',
 			validation: Rule => Rule.required()
 		},
 		{

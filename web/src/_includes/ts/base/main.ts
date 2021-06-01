@@ -53,6 +53,10 @@ document.addEventListener(
 				scriptPath: 'utilities/video'
 			},
 			{
+				selector: '#homePageWrapper',
+				scriptPath: 'components/items/featuredClips'
+			},
+			{
 				selector: '.contactForm #formContainer',
 				scriptPath: 'components/blocks/contactForm/contactForm'
 			},

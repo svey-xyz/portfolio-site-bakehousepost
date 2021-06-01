@@ -10,10 +10,5 @@ export default {
 			type: '_blocks',
 			description: 'The main content of the page.',
 		}
-	],
-	preview: {
-		select: {
-			title: 'title'
-		}
-	}
+	]
 }

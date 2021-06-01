@@ -39,6 +39,7 @@ module.exports = {
 			},
 			height: {
 				'102': '30rem',
+				'content': 'min-content'
 			},
 			maxHeight: {
 				'3/5': '60%',

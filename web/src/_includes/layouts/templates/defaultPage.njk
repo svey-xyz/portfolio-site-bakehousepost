@@ -3,9 +3,11 @@
 	Just imports blocks.
 #}
 
-{% include '../components/headers/header.njk' %}
+{% from "layouts/components/headers/header.njk" import header with context %}
+{{ header(padding = true) }}
 			
 {% from "layouts/_blocks.njk" import blocks with context %}
 {{ blocks(blocks=pageData.content.blocks) }}
 
-{% include '../components/footers/footer.njk' %}
+{% from "layouts/components/footers/footer.njk" import footer with context %}
+{{ footer(padding = true, iconColour = 'text-black') }}

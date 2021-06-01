@@ -5,7 +5,7 @@
 
 <div class="main-padding w-full block-padding flex flex-col md:flex-row justify-center content-center">
 
-	<div class="rounded-lg shadow-lg relative flex w-full md:w-80 md:min-w-md">
+	<div class="rounded-lg shadow-lg relative flex w-full h-content md:w-80 md:min-w-md">
 		<div class="rounded-lg relative block w-full overflow-hidden">
 
 			{% if site.about.avatar %}
@@ -18,9 +18,9 @@
 				<div class="z-10 w-full">
 					<span class="block font-black leading-normal pb-6">{{ site.about.name }}</span>
 					{% if section.personalInfo %}
-						<a href="tel: {{ site.about.phoneNumber }}" class="leading-relaxed">{{ site.about.phoneNumber }}</a>
-						<a href="mailto: {{ site.about.email }}" class="leading-relaxed">{{ site.about.email }}</a>
-						<a href="{{ site.about.social[0].url }}" class="leading-relaxed">{{ site.about.social[0].socialTitle }}</a>
+						<a href="tel: {{ site.about.phoneNumber }}" class="leading-relaxed hover:underline">{{ site.about.phoneNumber }}</a>
+						<a href="mailto: {{ site.about.email }}" class="leading-relaxed hover:underline">{{ site.about.email }}</a>
+						<a href="{{ site.about.social[0].url }}" class="leading-relaxed hover:underline">{{ site.about.social[0].socialTitle }}</a>
 					{% endif %}
 				</div>
 			</div>

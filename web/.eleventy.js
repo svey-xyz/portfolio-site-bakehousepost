@@ -102,6 +102,21 @@ module.exports = (eleventyConfig) => {
 	});
 
 	eleventyConfig.addShortcode("videoEmbed", function (url) {
+		const video = getVideoProperties(url)
+
+		const videoContainer =
+			`<div class="video-embed-container z-10 absolute inset-0 hidden" data-embed-type="${video.type}" data-video-id="${video.ID}">
+			<div id="${video.type}-container" class="absolute inset-0 z-10"></div>
+			</div>`
+
+		return videoContainer;
+	});
+
+	eleventyConfig.addShortcode("videoID", function (url) {
+		return getVideoProperties(url).ID;
+	});
+
+	function getVideoProperties(url) {
 		const vimeoIDPattern = /(?:https?:\/\/)?(?:w{3}\.)?(?:vimeo\.com)\/(\d+)(?:\S*)/
 		const youtubeIDPattern = /(?:https?:\/\/)?(?:w{3}\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/)?([A-Za-z0-9-_]{11})(?:\S*)/;
 
@@ -109,20 +124,16 @@ module.exports = (eleventyConfig) => {
 		let youtubeMatch = youtubeIDPattern.exec(url)
 
 		if (!vimeoMatch && !youtubeMatch) throw (new Error(`Video URL does not match any accepted embeds! Affected URL: ${url}`));
-
 		let embedType = vimeoMatch ? 'vimeo' : 'youtube';
 		let embed = vimeoMatch ? vimeoMatch : youtubeMatch;
 
-		const videoID = embed[1]
+		let video = {
+			'type': embedType,
+			'ID': embed[1]
+		}
 
-		const videoContainer =
-		`<div class="video-embed-container z-10 absolute inset-0 hidden" data-embed-type="${embedType}" data-video-id="${videoID}">
-			<div id="vimeo-container" class="absolute inset-0 z-10"></div>
-			<div id="youtube-container" class="absolute inset-0 z-10"></div>
-		</div>`
-
-		return videoContainer;
-	});
+		return video;
+	}
 
 	eleventyConfig.addWatchTarget("./src/style/**/*"); // doesn't work with eleventy config not at root
 

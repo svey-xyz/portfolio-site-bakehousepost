@@ -15,6 +15,13 @@ module.exports = async () => {
           	}
 		}`
 
+	const homePageQuery = groq`{
+			featuredClips[]{
+				...,
+				client->
+          	}
+		}`
+
 	const filter = groq`*[_type == "page"]`
 	const projection = groq`{
 			_id,
@@ -31,7 +38,7 @@ module.exports = async () => {
 				"template":condition,
 				"content":select(
 					condition == "defaultPage" => defaultPage${defaultPageQuery},
-					condition == "homePage" => homePage
+					condition == "homePage" => homePage${homePageQuery}
 				)
 			}
 		}`

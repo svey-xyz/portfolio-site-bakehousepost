@@ -1,3 +1,6 @@
+import featuredClip from '../../../objects/utilities/items/featuredClip'
+
+
 export default {
 
 	title: 'Home Page Template',
@@ -5,15 +8,16 @@ export default {
 	type: 'object',
 	fields: [
 		{
-			title: 'Blocks',
-			name: 'blocks',
-			type: '_blocks',
-			description: 'Blocks that will appear before the contact forum.',
+			title: 'Featured Clips',
+			name: 'featuredClips',
+			type: 'array',
+			description: 'Add some featured clips to the homepage.',
+			of: [featuredClip],
+			validation: Rule => [
+				Rule.required(),
+				Rule.min(1),
+				Rule.max(5)
+			]
 		}
-	],
-	preview: {
-		select: {
-			title: 'title'
-		}
-	}
+	]
 }

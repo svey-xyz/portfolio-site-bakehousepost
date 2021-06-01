@@ -15,7 +15,7 @@ let videoID: string
 
 let vimeoOptions = {
 	id: 0,
-	loop: false
+	loop: false,
 };
 
 export const mount = (container: Element) => {
@@ -31,7 +31,6 @@ export const mount = (container: Element) => {
 	overlay.addEventListener('click', playVideo);
 
 	playerContainer = <HTMLElement>videoContainer.querySelector(`#${embedType}-container`);
-	videoContainer.removeChild(videoContainer.querySelector(`#${embedType === 'vimeo' ? 'youtube' : 'vimeo'}-container`)!);
 }
 
 function playVideo() {
