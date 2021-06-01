@@ -2,7 +2,7 @@ import { IoFilm } from "react-icons/io5";
 
 export default {
 	title: 'Video',
-	name: 'video',
+	name: 'videoSection',
 	type: 'object',
 	description: 'Showcase a YouTube or Vimeo video.',
 	icon: IoFilm,
@@ -17,7 +17,8 @@ export default {
 			title: 'Thumbnail',
 			name: 'thumbnail',
 			type: 'image',
-			description: 'If a thumbnail is provided the video will use an overlay. Ideally 16/9 aspect ratio.'
+			description: 'A thumbnail is required!',
+			validation: Rule => Rule.required()
 		},
 		{
 			title: 'Link',

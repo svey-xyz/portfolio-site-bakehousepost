@@ -29,7 +29,7 @@
 
 	</div>
 
-	<div class="realtive flex flex-wrap justify-center w-full">
+	<div class="realtive flex flex-wrap justify-start items-start min-w-full md:-mx-4 xl:-mx-6">
 		{# 11ty only returns strings from shortcodes, so the data is added to the page data, hopefully this changes in the future #}
 		{% set activeProjects %}{% getMatchingProjects projects.work, filterTags %}{% endset %}
 

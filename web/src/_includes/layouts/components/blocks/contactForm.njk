@@ -2,37 +2,54 @@
 	Contact Form.
 #}
 
+{% set formName %}
+	{% if section.formName %}
+		{{ section.formName }}
+	{% else %}
+		contact
+	{% endif %}
+{% endset %}
+
+{% set successMessage %}
+	{% if section.successMessage %}
+		{{ section.successMessage }}
+	{% else %}
+		Message submitted successfully!
+	{% endif %}
+{% endset %}
+
 <div class="relative flex align-center justify-center w-full main-padding">
-	<form id="formContainer" name="contact" class="w-full max-w-prose-full">
+	<form id="formContainer" class="w-full max-w-prose-full" name="{{ formName | slug }}" method="POST" action="{{ pageData.slug | slug }}/?{{ formName | slug }}=success" data-netlify="true" data-netlify-honeypot="bot-field">
+		{# Needed for Netlify forms bot testing #}
+		<input type="hidden" name="form-name" value="{{ formName | slug }}" />
+		<div hidden aria-hidden="true">
+			<label>
+				Don’t fill this out if you're human: 
+				<input name="bot-field" />
+			</label>
+		</div>
 		
 		<div class="w-full mb-12">
-			<label for="Name" class="block mb-4 tracking-wider font-semibold leading-normal">NAME</label>
-			<input type="text" id="Name" name="Name" class="block p-2 w-full border border-black" required>
+			<label for="name" class="block mb-4 tracking-wider font-semibold leading-normal">NAME</label>
+			<input type="text" id="Name" name="name" class="block p-2 w-full border border-black" required/>
 		</div>
 
 		<div class="w-full mb-12">
-			<label for="Email" class="block mb-4 tracking-wider font-semibold leading-normal">EMAIL</label>
-			<input type="email" id="Email" i="Email" class="block p-2 w-full border border-black" required>
+			<label for="email" class="block mb-4 tracking-wider font-semibold leading-normal">EMAIL</label>
+			<input type="email" id="Email" name="email" class="block p-2 w-full border border-black" required/>
 		</div>
 
 		<div class="w-full mb-12">
-			<label for="Message" class="block mb-4 tracking-wider font-semibold leading-normal">MESSAGE</label>
-			<textarea id="Message" name="Message" class="block p-2 w-full border border-black" rows="6" maxlength="3000" required></textarea>
+			<label for="message" class="block mb-4 tracking-wider font-semibold leading-normal">MESSAGE</label>
+			<textarea id="Message" name="message" class="block p-2 w-full border border-black" rows="6" maxlength="3000" required></textarea>
 		</div>
 
 		<div class="w-full mb-12">
-			<button type="submit" class="block bg-black text-white px-6 tracking-wider font-semibold leading-loose">Send</button>
+			<button type="submit" class="block border-black border-2 bg-black text-white px-6 tracking-wider font-semibold leading-loose hover:bg-primaryColour hover:text-black">Send</button>
 		</div>
 
-		<div id="emailSuccess" class="email-response hidden w-full font-bold text-green-400">
-			<span>Message sent succesfully!</span>
-		</div>
-
-		<div id="emailFailure" class="email-response hidden w-full text-red-700">
-			<span>
-				Messaged failed to send. <br> Try again or contact me at my email address: <br>
-				<a href="mailto: {{ site.about.email }}" class="leading-loose font-bold">{{ site.about.email }}</a>
-			</span>
+		<div class="w-full mb-12">
+			<span id="success" class="hidden text-green-500 font-bold">{{ successMessage }}</span>
 		</div>
 
 	</form>

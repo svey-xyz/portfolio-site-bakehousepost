@@ -1,0 +1,51 @@
+{# {% set previousPost = collections.projects | getPreviousCollectionItem(page) %}
+{% set nextPost = collections.projects | getNextCollectionItem(page) %} #}
+{#
+	Individual project overlay
+#}
+
+{% set hasThumbnail %}
+	{% if project.thumbnail %}
+		true
+	{% else %}
+		false
+	{% endif %}
+{% endset %}
+
+<style>
+	html, body {
+		background-color: #000;
+	}
+
+	#header > .header-padding {
+		background-color: #000;
+	}
+	
+</style>
+
+{% include '../components/headers/header.njk' %}
+	
+<div class="relative w-full h-full min-h-screen py-12 bg-black text-white">
+
+	<div class="w-full main-padding block-padding block">
+		<a id="returnTo" href="/{{ site.navigation.archivePageSlug | slug }}" class="font-bold text-lg"> < back</a>
+	</div>
+
+	<div class="relative flex flex-col justify-center items-center w-full main-padding">
+
+		{% from "layouts/utilities/video.njk" import video %}
+		{{ video(url=project.url, thumbnail=project.thumbnail, title=project.title) }}
+
+		<div>
+			<h2 class="block-padding">
+				{% if project.client.clientName %}
+					<span class="font-bold font-body">{{ project.client.clientName }}</span>
+					<span class="font-light font-body">, </span>
+				{% endif %}
+				<span class="font-light font-body">{{ project.title }}</span>
+			</h2>
+			<span class="block block-padding max-w-prose-full">{{ project.description | sanityBlocksToMarkdown | markdownify | safe }}</span>
+		</div>
+
+	</div>
+</div>

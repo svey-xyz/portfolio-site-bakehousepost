@@ -1,7 +1,8 @@
 import client from 'part:@sanity/base/client'
 import SlugInput from 'sanity-plugin-better-slug'
-import { isUniqueAcrossAllDocuments } from '../../lib/isUniqueAcrossAllDocuments'
 import { validateSlug } from '../../lib/validateSlug'
+import { isUniqueAcrossAllDocuments } from '../../lib/isUniqueAcrossAllDocuments'
+
 
 import { MdPermMedia } from 'react-icons/md';
 
@@ -18,6 +19,23 @@ export default {
 			type: 'string',
 			description: 'Title of the project.',
 			validation: Rule => Rule.required()
+		},
+		{
+			title: 'Slug',
+			name: 'slug',
+			type: 'slug',
+			inputComponent: SlugInput,
+			description: 'Custom slugs are generally not recommended, use the generate option.',
+			options: {
+				source: 'title',
+				isUnique: isUniqueAcrossAllDocuments,
+				basePath: async (document) => {
+					const projectsRoot = await client.fetch(`*[_id == "navigation"]{"archivePageSlug":archivePage->slug.current}[0].archivePageSlug`)
+
+					return projectsRoot ? `/${projectsRoot}` : ' '
+				}
+			},
+			validation: Rule => Rule.custom((slug) => validateSlug(slug))
 		},
 		{
 			title: 'Date',

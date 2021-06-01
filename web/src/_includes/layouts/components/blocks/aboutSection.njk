@@ -9,7 +9,7 @@
 		<div class="rounded-lg relative block w-full overflow-hidden">
 
 			{% if site.about.avatar %}
-			<img src="{% imageUrlFor site.about.avatar %}"
+			<img src="{% sanityImageURL site.about.avatar %}"
 				class="lazy relative inline-block w-full min-w-full h-auto"/>
 			{% endif %}
 
@@ -30,7 +30,7 @@
 	<div class="block-padding md:m-0 md:pl-12 max-w-prose">
 		{{ site.about.description | sanityBlocksToMarkdown | markdownify | safe }}
 		{% if section.downloadCV %}
-			<a target="_blank" href="{{ site.about.curriculumVitaeURL }}" class="font-bold">{{ section.downloadCV }}</a>
+			<a target="_blank" href="{{ site.about.curriculumVitaeURL }}" class="font-bold hover:underline">{{ section.downloadCV }}</a>
 		{% endif %}
 	</div>
 </div>

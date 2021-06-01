@@ -23,7 +23,12 @@ export default {
 			title: 'Description',
 			name: 'description',
 			type: 'text',
-			description: 'Description for search engines and social media.'
+			description: 'Concise description of the site.',
+			validation: Rule => [
+				Rule.required(),
+				Rule.min(45).warning("Try to be more descriptive."),
+				Rule.max(200).warning("This may be too descriptive!")
+			]
 		},
 		{
 			title: 'Keywords',

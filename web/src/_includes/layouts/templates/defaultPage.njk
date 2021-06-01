@@ -3,5 +3,9 @@
 	Just imports blocks.
 #}
 
+{% include '../components/headers/header.njk' %}
+			
 {% from "layouts/_blocks.njk" import blocks with context %}
 {{ blocks(blocks=pageData.content.blocks) }}
+
+{% include '../components/footers/footer.njk' %}

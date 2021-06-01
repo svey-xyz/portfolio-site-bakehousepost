@@ -2,23 +2,21 @@
 // Content modification tools
 const slugify = require("slugify");
 const markdownify = require("./lib/filters/markdownfilter")
-const embedEverything = require("eleventy-plugin-embed-everything");
 
 // Sanity tools
 const serializers = require('./lib/utils/serializers')
 const client = require('./lib/utils/sanityClient')
 const BlocksToMarkdown = require('@sanity/block-content-to-markdown')
-const sanityImage = require('eleventy-plugin-sanity-image');
+const imageUrl = require('@sanity/image-url')
 
 // Cache busting
 const fs = require("fs");
 const path = require("path");
-const { callbackify } = require("util");
 
 const scriptManifestPath = path.resolve(__dirname, "www", "assets", "js", "manifest.json");
 const scriptManifest = process.env.NODE_ENV === 'production' ?
 	JSON.parse(fs.readFileSync(scriptManifestPath, { encoding: "utf8" })) :
-	{ "main.js" : "/assets/js/main.js", "runtime.js" : "/assets/js/runtime.js" }
+	{ "main.js": "/assets/js/main.js", "runtime.js": "/assets/js/runtime.js" }
 
 const styleManifestPath = path.resolve(__dirname, "www", "assets", "css", "manifest.json");
 const styleManifest = process.env.NODE_ENV === 'production' ?
@@ -26,8 +24,6 @@ const styleManifest = process.env.NODE_ENV === 'production' ?
 	{ "style.css": "style.css" }
 
 module.exports = (eleventyConfig) => {
-	eleventyConfig.addPlugin(embedEverything);
-
 	// all the minify code is enabled when set to 'production'
 	eleventyConfig.setQuietMode(true);
 	eleventyConfig.setWatchThrottleWaitTime(1000);
@@ -49,6 +45,11 @@ module.exports = (eleventyConfig) => {
 		return BlocksToMarkdown(sanityBlcoks, { serializers, ...client.config() })
 	});
 
+	eleventyConfig.addShortcode("sanityImageURL", function (sanityImage, size = 400) {
+		const builder = imageUrl(client)
+		return builder.image(sanityImage).width(size).url();
+	});
+
 	// Overwrite 11ty built in slug filter to allow for backslashes to remain
 	eleventyConfig.addFilter("slug", (input) => {
 		const options = {
@@ -58,8 +59,6 @@ module.exports = (eleventyConfig) => {
 		};
 		return slugify(input, options);
 	});
-
-	eleventyConfig.addWatchTarget("./src/style/**/*"); // doesn't work with eleventy config not at root
 
 	eleventyConfig.addShortcode("bundledJS", function () {
 		if (!scriptManifest["main.js"] || !scriptManifest["runtime.js"]) {
@@ -74,7 +73,7 @@ module.exports = (eleventyConfig) => {
 			console.log("Style bundle not found!")
 			throw ("Style bundle not found!");
 		};
-		
+
 		return `<link rel="stylesheet" href="/assets/css/${styleManifest['style.css']}">`;
 	});
 
@@ -102,9 +101,30 @@ module.exports = (eleventyConfig) => {
 		return activeProjects;
 	});
 
-	eleventyConfig.addPlugin(sanityImage, {
-		client: client
+	eleventyConfig.addShortcode("videoEmbed", function (url) {
+		const vimeoIDPattern = /(?:https?:\/\/)?(?:w{3}\.)?(?:vimeo\.com)\/(\d+)(?:\S*)/
+		const youtubeIDPattern = /(?:https?:\/\/)?(?:w{3}\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/)?([A-Za-z0-9-_]{11})(?:\S*)/;
+
+		let vimeoMatch = vimeoIDPattern.exec(url)
+		let youtubeMatch = youtubeIDPattern.exec(url)
+
+		if (!vimeoMatch && !youtubeMatch) throw (new Error(`Video URL does not match any accepted embeds! Affected URL: ${url}`));
+
+		let embedType = vimeoMatch ? 'vimeo' : 'youtube';
+		let embed = vimeoMatch ? vimeoMatch : youtubeMatch;
+
+		const videoID = embed[1]
+
+		const videoContainer =
+		`<div class="video-embed-container z-10 absolute inset-0 hidden" data-embed-type="${embedType}" data-video-id="${videoID}">
+			<div id="vimeo-container" class="absolute inset-0 z-10"></div>
+			<div id="youtube-container" class="absolute inset-0 z-10"></div>
+		</div>`
+
+		return videoContainer;
 	});
+
+	eleventyConfig.addWatchTarget("./src/style/**/*"); // doesn't work with eleventy config not at root
 
 	return {
 		dir: {

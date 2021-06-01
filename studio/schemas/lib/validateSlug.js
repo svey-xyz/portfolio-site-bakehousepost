@@ -1,5 +1,5 @@
-export function validateSlug(slug, options) {
-	if (!slug) return "Slug is required."
+export function validateSlug(slug, slugRequired = true) {
+	if (!slug && slugRequired) return "Slug is required."
 	let errorMessage;
 
 	if (slug.current.endsWith('/') || slug.current.endsWith('\\')) errorMessage = 'Cannot end with a slash';

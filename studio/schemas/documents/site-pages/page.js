@@ -9,6 +9,7 @@ import defaultPage from './templates/defaultPage';
 import homePage from './templates/homePage';
 
 import { RiPagesFill } from 'react-icons/ri';
+import { AiOutlineFileSearch } from 'react-icons/ai'
 
 
 export default {
@@ -32,7 +33,7 @@ export default {
 			name: 'title',
 			type: 'string',
 			fieldset: 'pageSettings',
-			description: 'Title of the page.',
+			description: 'Title of the page for internal use.',
 			validation: Rule => [
 				Rule.required().error("Page needs a title!"),
 				Rule.custom((title, context) => {
@@ -65,11 +66,38 @@ export default {
 			validation: Rule => Rule.custom((slug) => validateSlug(slug))
 		},
 		{
-			title: 'Blurb',
-			name: 'blurb',
+			name: 'note',
+			type: 'note',
+			fieldset: 'pageSettings',
+			options: {
+				icon: AiOutlineFileSearch,
+				headline: 'Optimization Tip',
+				message: 'The following fields are incredibly important for your SEO. <br> <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title#page_titles_and_seo">Read more about good titles.</a>',
+				tone: 'transparent'
+			}
+		},
+		{
+			title: 'Descriptive Title',
+			name: 'descriptiveTitle',
 			type: 'string',
 			fieldset: 'pageSettings',
-			description: 'A short blurb about the page.'
+			description: 'A more descriptive title, that will appear in browsers and search engines.',
+			validation: Rule => [
+				Rule.required(),
+				Rule.min(15).warning("Try to make the title as accurate and meaningful as possible!"),
+				Rule.max(55).warning("This may be too descriptive, and won't all appear in search engines!")
+			]
+		},
+		{
+			title: 'Page Description',
+			name: 'description',
+			type: 'text',
+			fieldset: 'pageSettings',
+			description: 'A concise description of the page, if none is provided this page will use the site wide descriptor.',
+			validation: Rule => [
+				Rule.min(45).warning("Try to be more descriptive."),
+				Rule.max(200).warning("This may be too descriptive!")
+			]
 		},
 		{
 			title: "Page Content",

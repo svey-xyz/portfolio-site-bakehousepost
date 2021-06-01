@@ -4,7 +4,7 @@
 		"module": "esnext",
 		// "moduleResolution": "node", // required for THREE.js
 		"strict": true,
-		"noImplicitAny": true,
+		"noImplicitAny": false,
 		"sourceMap": true,
 		"moduleResolution": "node"
 	},

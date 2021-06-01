@@ -18,7 +18,7 @@ export default {
 			title: 'Client Logo',
 			name: 'clientLogo',
 			type: 'image',
-			description: 'Client logo, no larger than 128x128.',
+			description: 'White cut-out client logo, no larger than 128x128, PNG or SVG.',
 			options: {
 				accept: '.png,.svg'
 			}

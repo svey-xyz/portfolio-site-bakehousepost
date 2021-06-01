@@ -4,9 +4,9 @@ import { loadModules } from '../utilities/helpers'
 var ver = '0.1.2';
 var mobile = false;
 var height:number;
-const prevPage = document.referrer;
 declare global {
 	var vh:number;
+	var prevPage:string;
 }
 
 /******** INITIALIZATION ********/
@@ -17,6 +17,7 @@ declare global {
 
 	height = window.innerHeight;
 	global.vh = height * 0.01;
+	global.prevPage = document.referrer.indexOf(window.location.protocol + "//" + window.location.host) === 0 ? document.referrer : '/';
 
 	window.addEventListener("resize", resize);
 	resize();
@@ -41,19 +42,27 @@ document.addEventListener(
 		loadModules([
 			{
 				selector: '#header',
-				script: import('../components/headers/header')
+				scriptPath: 'components/headers/header'
 			},
 			{
 				selector: '.projectsArchive > [data-filterable="true"]', // don't bother loading script if not filterable
-				script: import('../components/blocks/projectsArchive/projectsArchive')
+				scriptPath: 'components/blocks/projectsArchive/projectsArchive'
 			},
 			{
-				selector: '.video',
-				script: import('../components/blocks/video/video')
+				selector: '.video-utility',
+				scriptPath: 'utilities/video'
 			},
 			{
 				selector: '.contactForm #formContainer',
-				script: import('../components/blocks/contactForm/contactForm')
+				scriptPath: 'components/blocks/contactForm/contactForm'
+			},
+			{
+				selector: '.scroll-indicator',
+				scriptPath: 'utilities/smoothScroll'
+			},
+			{
+				selector: '#returnTo',
+				scriptPath: 'utilities/returnTo'
 			},
 		])
 	}

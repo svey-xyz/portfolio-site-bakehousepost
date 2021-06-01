@@ -71,7 +71,7 @@
 
 				& > .nav-item {
 					pointer-events: auto;
-					padding-left: 4rem;
+					margin-left: 4rem;
 					align-self: flex-end; /* move to bottom */
 					white-space: nowrap;
 
@@ -160,15 +160,19 @@
 	@media (--max-sm-screen) {
 		& > .navigation-dropdown {
 			@apply shadow bg-primaryColour;
+			height: 100%;
+
 				
 			& > .dropdown-item-container {
 				@apply main-padding;
 
 				position: relative;
+				height: 100%;
 				display: flex;
 				flex-flow: column nowrap;
 				align-items: center;
-				justify-content: center;
+				/* justify-content: center; */
+				padding-top: 1.5rem;
 				padding-bottom: 1.5rem;
 			}
 		}
@@ -185,7 +189,6 @@
 				position: relative;
 				display: inline-block;
 				float: right;
-				padding-bottom: 1.5rem;
 				padding: 0rem 3rem 1.5rem 3rem;
 			}
 		}
