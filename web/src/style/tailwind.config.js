@@ -24,11 +24,14 @@ module.exports = {
 				'3/4': '75%',
 				'full': '100%',
 				'sm': '12rem',
-				'md': '20rem'
+				'md': '20rem',
+				'thumb': '10rem',
+				'thumb-sm': '6rem'
+
 			},
 			maxWidth: {
 				'prose-full': '85ch',
-				'prose': '65ch',
+				'prose': '65ch'
 			},
 			minHeight: {
 				'16': '4rem',

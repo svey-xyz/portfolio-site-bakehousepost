@@ -6,13 +6,20 @@
 {% from "layouts/components/headers/header.njk" import header with context %}
 {{ header() }}
 
+<style>
+	html, body {
+		background-color: #000;
+		overflow: hidden;
+	}
+</style>
+
 <div id="homePageWrapper" class="absolute inset-0 overflow-hidden whitespace-nowrap">
 
 	{% set firstClip = pageData.content.featuredClips[0] %}
 
-	<div id="featuredClip" class="featured-clip relative min-w-full min-h-full">
+	<div id="featuredClip" class="featured-clip relative min-w-full min-h-full overflow-hidden">
 		{% if firstClip.thumbnail %}
-			<div class="flex absolute inset-0 items-center justify-center bg-black overflow-hidden">
+			<div class="flex absolute inset-0 items-center justify-center overflow-hidden">
 				<img src="{% sanityImageURL firstClip.thumbnail, 1024 %}" alt="{{ firstClip.title }} - Video Overlay"
 				class="lazy absolute inset-0 inline-block w-full h-full min-w-full min-h-full object-center object-cover"/>
 			</div>
@@ -20,22 +27,27 @@
 
 		{# Embed handled by Eleventy and JS #}
 		<div id="featured-clip-container" class="z-10 absolute inset-0 hidden" data-video-id="{% videoID firstClip.clip %}">
-			<div id="featured-clip-wrapper" ></div>
+			<div class="absolute inset-0 bg-black"></div>
+			<div id="featured-clip-wrapper" class="z-10"></div>
 		</div>
+
 	</div>
 
 	<div class="flex flex-col absolute bottom-0 z-10 w-full pt-44 bg-gradient-to-t from-black via-black">
 		<div class="main-padding w-full">
 
 			{% if pageData.content.featuredClips | length > 1 %}
-				<div class="flex flex-row mb-8 -mx-4 md:-mx-12">
-					{% for featuredClip in pageData.content.featuredClips %}
-						{% include "../components/items/featuredClipThumb.njk" %}
-					{% endfor %}
+				<div class="relative w-full overflow-x-scroll overflow-y-hidden">
+					<div class="block mx-auto w-min">
+						<div id="featuredClipThumbs" class="relative inline-flex flex-row items-start my-8">
+							{% for featuredClip in pageData.content.featuredClips %}
+								{% include "../components/items/featuredClipThumb.njk" %}
+							{% endfor %}
+						</div>
+					</div>
 				</div>
 			{% endif %}
 
-			<div class="w-full h-0.5 bg-primaryColour"></div>
 			
 		</div>
 		{% include "../components/footers/footerPadding.njk" %}

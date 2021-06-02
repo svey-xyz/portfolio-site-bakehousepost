@@ -24,6 +24,7 @@ const styleManifest = process.env.NODE_ENV === 'production' ?
 	{ "style.css": "style.css" }
 
 module.exports = (eleventyConfig) => {
+
 	// all the minify code is enabled when set to 'production'
 	eleventyConfig.setQuietMode(true);
 	eleventyConfig.setWatchThrottleWaitTime(1000);

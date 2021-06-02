@@ -1,0 +1,33 @@
+
+
+#featuredClipThumbs {
+	&::after {
+		content: '';
+		position: absolute;
+		height: 2px;
+		width: 100%;
+		bottom: -2rem;
+		background: white;
+	}
+
+	& > .featured-clip-thumb {
+		@apply transition transform hover:scale-110;
+
+		transition: all 250ms ease-in-out;
+
+		&:first-child {
+			margin-left: 0;
+		}
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&.active {
+			@apply hover:scale-100;
+
+			& > #aspectWrapper > #thumbOverlay {
+				opacity: 0;
+			}
+		}
+	}
+}

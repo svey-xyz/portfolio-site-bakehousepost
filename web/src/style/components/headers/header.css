@@ -46,6 +46,13 @@
 
 			& > .site-title {
 				display: flex;
+				& > img {
+					height: var(--header-item-height);
+					width: auto;
+					max-width: 100vw;
+					min-width: 100%;
+				}
+
 				& > h1 {
 					font-size: var(--header-item-height);
 					line-height: var(--header-item-height);

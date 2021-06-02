@@ -12,12 +12,10 @@ module.exports = async () => {
 			"slug":slug.current,
 			projectTags[]->,
 			client->,
-		},
+		} | order(date desc),
 		"tags":*[_type == "projectTag"]{...}
 	}`
 
-	// const order = `| order(publishedAt asc)`
-	// const query = [filter, projection, order].join(' ').toString()
 	const data = await sanityFetch('projects', query)
 
 	
