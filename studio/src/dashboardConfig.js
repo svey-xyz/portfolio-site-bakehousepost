@@ -7,14 +7,8 @@ export default {
 				sites: [
 					{
 						title: 'Production Site',
-						apiId: 'd1c59088-58cc-4182-9a85-76ab54b515d2',
-						buildHookId: '60b92cc8499530276f20a106',
-						name: 'nifty-mirzakhani-49a8dd',
-					},
-					{
-						title: 'Staging Site',
-						apiId: 'd1c59088-58cc-4182-9a85-76ab54b515d2',
-						buildHookId: '60b92dc422fbd328006a2b5d',
+						apiId: '7eff495c-6ff4-4a8b-a968-9ec6a68f1fbb',
+						buildHookId: '60b9326159f6e12922926bba',
 						name: 'nifty-mirzakhani-49a8dd',
 					}
 				]

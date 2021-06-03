@@ -23,11 +23,16 @@
 		}
 
 		&.active {
-			@apply hover:scale-100;
+			@apply border-2 border-white hover:scale-100;
 
-			& > #aspectWrapper > #thumbOverlay {
+			& > #aspectWrapper {
+				@apply transform scale-75 hover:scale-75;
+
+				& > #thumbOverlay {
 				opacity: 0;
 			}
+
+			} 
 		}
 	}
 }
