@@ -51,6 +51,9 @@ module.exports = {
 			padding: {
 				'16/9': '56.25%'
 			},
+			scale: {
+				'102': '1.02'
+			},
 			colors: {
 				primaryColour: 'var(--primary-colour)',
 				primaryTranslucent: 'var(--primary-colour-translucent)',
@@ -62,7 +65,8 @@ module.exports = {
 			},
 			boxShadow: {
 				DEFAULT: '0 0px 6px -1px rgba(0,0,0,0.1), 0 0px 5px -1px rgba(0,0,0,.06)',
-				lg: '0 0px 12px -3px rgba(0,0,0,0.6), 0 0px 6px -1px rgba(0,0,0,.06)',
+				lg: '0 0px 12px -3px rgba(0,0,0,0.5), 0 0px 6px -1px rgba(0,0,0,.06)',
+				xl: '0 0px 16px -3px rgba(0,0,0,0.5), 0 0px 7px -1px rgba(0,0,0,.07)',
 			},
 			fontFamily: {
 				heading: ['DM Serif Display', 'serif'],

@@ -14,6 +14,8 @@
     "@sanity/default-login",
     "@sanity/desk-tool",
     "better-slug",
+    "@sanity/dashboard",
+    "dashboard-widget-netlify",
     "note-field"
   ],
   "env": {
@@ -28,9 +30,13 @@
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema"
     },
-	{
-		"name": "part:@sanity/desk-tool/structure",
-		"path": "./deskStructure.js"
-	}
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "src/deskStructure.js"
+    },
+    {
+      "implements": "part:@sanity/dashboard/config",
+      "path": "src/dashboardConfig.js"
+    }
   ]
 }

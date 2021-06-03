@@ -30,16 +30,16 @@
 {% endset %}
 
 <div class="main-padding self-center w-full block-padding">
-	<a href="{{ pageLink | slug }}" class="overflow-hidden rounded-lg relative flex w-full max-h-96 md:max-h-80 shadow-lg">
+	<a href="{{ pageLink | slug }}" class="group overflow-hidden rounded-lg relative flex w-full max-h-96 md:max-h-80 shadow-lg">
 		<div class="rounded-lg relative block w-full overflow-hidden">
 
 			<img src="{% sanityImageURL section.image, 800 %}" width="100%"  height="100%" alt="{{ section.heading }} - Card Background"
-				class="lazy relative inline-block w-full h-full min-w-full min-h-96 md:min-h-80 object-center object-cover"/>
+				class="lazy relative inline-block w-full h-full min-w-full min-h-96 md:min-h-80 object-center object-cover transform duration-200 group-hover:scale-105"/>
 
 			<div class="absolute flex flex-col justify-center bottom-0 z-10 w-full px-8 py-12 md:h-full md:w-2/5 md:min-w-md md:px-16 md:py-0 {{ alignment }}">
 				<div class="absolute inset-0 -mt-24 md:my-0 bg-gradient-to-t {{ gradient }} from-primaryColour via-primaryTranslucent"></div>
 
-				<span class="z-10 font-body text-3xl font-bold leading-loose">{{ section.heading }}</span>
+				<span class="z-10 font-body text-3xl font-bold leading-loose group-hover:underline">{{ section.heading }}</span>
 				<span class="z-10">{{ section.blurb  | sanityBlocksToMarkdown | markdownify | safe }}</span>
 
 			</div>
