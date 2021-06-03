@@ -25,9 +25,9 @@ module.exports = {
 				'full': '100%',
 				'sm': '12rem',
 				'md': '20rem',
-				'thumb': '10rem',
+				'thumb-lg': '8rem',
+				'thumb-md': '7rem',
 				'thumb-sm': '6rem'
-
 			},
 			maxWidth: {
 				'prose-full': '85ch',

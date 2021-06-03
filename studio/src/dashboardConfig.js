@@ -10,6 +10,12 @@ export default {
 						apiId: 'd1c59088-58cc-4182-9a85-76ab54b515d2',
 						buildHookId: '60b92cc8499530276f20a106',
 						name: 'nifty-mirzakhani-49a8dd',
+					},
+					{
+						title: 'Staging Site',
+						apiId: 'd1c59088-58cc-4182-9a85-76ab54b515d2',
+						buildHookId: '60b92dc422fbd328006a2b5d',
+						name: 'nifty-mirzakhani-49a8dd',
 					}
 				]
 			}
